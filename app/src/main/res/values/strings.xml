@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">5K Pike</string>
+    <string name="edit_name_1">Lojtari 1</string>
+    <string name="edit_name_2">Lojtari 2</string>
+    <string name="edit_name_3">Lojtari 3</string>
+    <string name="edit_name_4">Lojtari 4</string>
+    <string name="points">Pike</string>
+    <string name="action_settings">Konfigurim</string>
+    <string name="action_reset">Rifillo te dhenat</string>
+    <string name="action_save">Ruaj te fundit</string>
+    <string name="action_open_from_database">Hap rezultat</string>
+    <string name="action_save_to_database">Ruaj</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ad">ca-app-pub-5149774453567013/8949112284</string>
+
+    <string name="Round_1">Kati 1</string>
+    <string name="Round_2">Kati 2</string>
+    <string name="Round_3">Kati 3</string>
+    <string name="Round_4">Kati 4</string>
+    <string name="Round_5">Kati 5</string>
+
+    <string name="Positive_Button">Ok</string>
+
+    <string name="Operation_Not_Possible">Operacioni nuk u kompletua.</string>
+    <string name="Operation_Succeeded">Operacioni u krye</string>
+    <string name="Operation_Failed">Operacioni deshtoi</string>
+    <string name="No_Players_Entered">"Asnje emer lojtari. Ju lutem jepni nje emer lojtari"</string>
+    <string name="Database_Reading_Error">Problem gjate leximit i te dhenave</string>
+    <string name="PlaceholderFragment_NotInitialised"> Error. Fragment not correctly initialized</string>
+    <string name="No_Game_Stored"> Nuk ka rezultat te ruajtur</string>
+
+    <string name="Total_Number_Of_Turns">10</string>
+    <string name="Number_Of_Rounds">5</string>
+    <string name="Number_Of_Sub_Rounds">2</string>
+
+
+</resources>

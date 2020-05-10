@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id = "@+id/rlOpenFromDatabase"
+    >
+
+
+        <ListView
+            android:id="@+id/gamesList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_alignParentTop="true"
+            />
+    <TableLayout
+        android:id="@+id/listOfFiles"
+        android:layout_width="fill_parent"
+        android:weightSum="2"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/listOfFiles"
+        >
+            <TableRow
+                android:layout_width="fill_parent"
+                android:weightSum="2"
+                android:layout_height="100dip">
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/open"
+                    android:layout_weight="1"
+                    android:id="@+id/btnOpenFromDatabase"
+                    />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cancel"
+                    android:layout_weight="1"
+                    android:id="@+id/btnCancelOpenFromDatabase"
+                    />
+            </TableRow>
+    </TableLayout>
+</RelativeLayout>
