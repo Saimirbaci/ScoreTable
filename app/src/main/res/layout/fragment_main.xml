@@ -49,26 +49,31 @@
                 android:layout_column="2"
                 android:maxLength="8"/>
         </TableRow>
+        <TableRow>
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight ="1"
+                android:text="Loje E Re"
+                android:id="@+id/newButton"
+                android:layout_column="1"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentRight="true"/>
+        </TableRow>
+        <TableRow>
+            <Button
+                android:id="@+id/openButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight ="1"
+                android:layout_column="1"
+                android:layout_below="@+id/newButton"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:text="Loja E Fundit" />
+        </TableRow>
+    </TableLayout>
 
-        </TableLayout>
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Loje E Re"
-        android:id="@+id/newButton"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true"/>
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Loja E Fundit"
-        android:id="@+id/openButton"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/newButton"/>
 
 </RelativeLayout>
