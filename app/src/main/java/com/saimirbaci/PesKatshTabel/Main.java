@@ -39,7 +39,7 @@ public class Main extends FragmentActivity
     {
     String fileName = "lastMatch.res";
     int numberOfPlayers = 0;
-    String playerNames[] = new String [4];
+    String[] playerNames = new String [4];
     int totalNumberOfTurns = 10;
     int maxNumberOfPlayers = 4;
 
