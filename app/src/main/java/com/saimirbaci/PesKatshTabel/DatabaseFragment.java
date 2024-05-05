@@ -4,15 +4,13 @@
 package com.saimirbaci.PesKatshTabel;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ListView;
+import androidx.fragment.app.Fragment;
 
 import java.util.List;
 
 
-public abstract class DatabaseFragment extends Fragment{
+public abstract class DatabaseFragment extends Fragment {
 
     static View rootView = null;
 

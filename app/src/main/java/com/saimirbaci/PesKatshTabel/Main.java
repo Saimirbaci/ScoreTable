@@ -13,15 +13,17 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentActivity;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -104,16 +106,16 @@ public class Main extends FragmentActivity
 
     @Override
     public void onBackPressed() {
-        try{
-            if (placeholderFragment != null){
-                 if(placeholderFragment.isGameStarted()){
-                     openSave();
-                 }
-                 placeholderFragment.setGameStarted(false);
+        super.onBackPressed();
+        try {
+            if (placeholderFragment != null) {
+                if (placeholderFragment.isGameStarted()) {
+                    openSave();
+                }
+                placeholderFragment.setGameStarted(false);
             }
-        }
-        catch (NullPointerException e){
-            Toast.makeText(this,getString(R.string.PlaceholderFragment_NotInitialised),Toast.LENGTH_SHORT).show();
+        } catch (NullPointerException e) {
+            Toast.makeText(this, getString(R.string.PlaceholderFragment_NotInitialised), Toast.LENGTH_SHORT).show();
         }
         this.finish();
     }

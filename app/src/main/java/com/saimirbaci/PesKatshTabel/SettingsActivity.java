@@ -16,7 +16,8 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+
+import androidx.core.app.NavUtils;
 
 import java.util.List;
 

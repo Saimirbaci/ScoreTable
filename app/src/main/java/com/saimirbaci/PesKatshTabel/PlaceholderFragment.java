@@ -8,7 +8,7 @@ package com.saimirbaci.PesKatshTabel;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
+
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -24,6 +24,9 @@ import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+
 import java.util.HashMap;
 import java.util.Map;
 
