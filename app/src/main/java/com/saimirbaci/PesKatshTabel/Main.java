@@ -24,9 +24,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class Main extends FragmentActivity
@@ -44,6 +47,8 @@ public class Main extends FragmentActivity
     int maxNumberOfPlayers = 4;
 
     MainGameData gameData;
+    GameDataLoader gameDataLoader;
+
 
     public static String UserName = "";
     public static boolean AutomaticCalculations = false;
@@ -66,6 +71,7 @@ public class Main extends FragmentActivity
         openResultsFromInitFragment = false;
         gameDbHelper = new GameDatabaseHelper(context);
         resultDbHelper = new ResultsDatabaseHelper(context);
+        gameDataLoader = new GameDataLoader(gameDbHelper, listGameNames);
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
        if (findViewById(R.id.fragment_container) != null) {
@@ -149,51 +155,6 @@ public class Main extends FragmentActivity
                 return super.onOptionsItemSelected(item);
         }
 
-    }
-
-    private void loadFromDatabase(DatabaseFragment obj){
-        SQLiteDatabase db;
-        try {
-            db = gameDbHelper.getReadableDatabase();
-        }
-        catch(Exception e){
-            System.out.println("Can't get database. Empty list");
-            return;
-        }
-
-        String sortOrder =
-                ResultsDatabase.GameEntry.COLUMN_NAME_GAME_NAME + " DESC";
-        Cursor cursor ;
-
-        try {
-            cursor = db.query(
-                    ResultsDatabase.GameEntry.TABLE_NAME,        // The table to query
-                    null,                                         // The columns to return
-                    null,    // The columns for the WHERE clause
-                    null,   // The values for the WHERE clause
-                    null,                                               // don't group the rows
-                    null,                                               // don't filter by row groups
-                    sortOrder                                           // The sort order
-            );
-            cursor.moveToFirst();
-            listGameNames.clear();
-            if(cursor.getCount() > 0){
-                while(true) {
-                    String name = cursor.getString(cursor.getColumnIndexOrThrow(ResultsDatabase.GameEntry.COLUMN_NAME_GAME_NAME));
-                    GameFileName gameName = new GameFileName(name);
-                    listGameNames.add(gameName);
-                    if(cursor.isLast()){
-                        break;
-                    }
-                    cursor.moveToNext();
-                }
-            }
-            cursor.close();
-        }
-        catch(Exception e){
-            System.out.println("Exception");
-        }
-        obj.setListGameNames(listGameNames);
     }
 
     public void openSaveToDatabase(){
@@ -336,7 +297,8 @@ public class Main extends FragmentActivity
     // Events called from the fragments
     @Override
     public void loadGameNames(DatabaseFragment obj){
-        loadFromDatabase(obj);
+
+        gameDataLoader.loadFromDatabase(obj);
     }
 
     private void AlertMsg(String msg){
@@ -353,19 +315,20 @@ public class Main extends FragmentActivity
     }
     @Override
     public void onSaveToDatabaseClicked(){
-        //Get the data from the fragment PlaceholderFragment
+        StringBuilder gameName = new StringBuilder();
         {
-            String gameName = saveToDatabaseFragment.getFileNameEditText().getText().toString();
-
-            for(GameFileName fileName : listGameNames){
-                if (fileName.getName().compareTo(gameName) == 0)
-                {
-                    AlertMsg("Rezultati me emrin " + gameName + " ekziston. Zgjidh emer tjeter per ta ruajtur rezultatin");
-                    return;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.getDefault());
+            String currentDateandTime = sdf.format(new Date());
+            for (int i = 0; i < playerNames.length; i++) {
+                if (playerNames[i] != null) {
+                    gameName.append(playerNames[i]);
+                    gameName.append("_");
                 }
             }
+            gameName.append(currentDateandTime);
+
             ContentValues values = new ContentValues();
-            values.put(ResultsDatabase.GameEntry.COLUMN_NAME_GAME_NAME, saveToDatabaseFragment.getFileNameEditText().getText().toString());
+            values.put(ResultsDatabase.GameEntry.COLUMN_NAME_GAME_NAME, gameName.toString());
             values.put(ResultsDatabase.GameEntry.COLUMN_NAME_PLAYER_1, gameData.getPlayerNames()[0]);
             values.put(ResultsDatabase.GameEntry.COLUMN_NAME_PLAYER_2, gameData.getPlayerNames()[1]);
             values.put(ResultsDatabase.GameEntry.COLUMN_NAME_PLAYER_3, gameData.getPlayerNames()[2]);
@@ -397,7 +360,7 @@ public class Main extends FragmentActivity
             SQLiteDatabase db = Main.resultDbHelper.getWritableDatabase();
             for (int rowIndex = 0; rowIndex < 10; rowIndex++) {
                 ContentValues values = new ContentValues();
-                values.put(ResultsDatabase.Results.GAME_ID, saveToDatabaseFragment.getFileNameEditText().getText().toString());
+                values.put(ResultsDatabase.Results.GAME_ID, gameName.toString());
                 values.put(ResultsDatabase.Results.COLUMN_NAME_TURN, rowIndex);
                 for (int colIndex = 0; colIndex < gameData.getNumberOfPlayers(); colIndex++) {
                     values.put(resultsDatabaseColumnNames[colIndex], gameData.getData(rowIndex, colIndex).getValue());
